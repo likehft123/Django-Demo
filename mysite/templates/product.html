@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <meta charset="utf-8">  <!--編碼-->
+        <link rel="stylesheet" href="/static/css/index.css">  <!--css路徑-->
+    </head>
+    
+
+
+
+    <body>
+
+        {% include "banner.html" %}
+        <div id='wrapper'>
+            <div id="content">
+        
+        <!--搜尋區塊-->
+        <div id="formarea" style="padding-left :5%;">
+            <form action=""  method="get" >
+                商品名稱 :<input type="text"  name="product" /> <p></p> <!--search 商品名稱-->  <!--<p></p>為換行-->
+                價格:<input type="number" name="startp" />~<input type="number" name="endp" /><p></p> <!--search 價格間距-->
+                <input type="submit" value="查詢" />  <!--submit 提交--> 
+            </form>
+        </div>
+
+
+
+        <div class="info">  <!--database呈現區塊-->
+            {% for p in productlist %}
+            <div class="infoarea">
+                <ul>
+                    <li>商城:{{p.shop}}</li>
+                    <li>產品:{{p.name}}</li>
+                    <li>價格:{{p.prcie}}</li>
+                    <li><a href="{{p.link}}"><img src="{{p.photo_url}}"></a></li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">  <!--換頁相關區塊-->
+            <span class="page_link">
+                {% if productlist.has_previous %}   <!--如果productlsit有往前-->
+                    <a href="?page={{productlist.previous_page_number}}&product={{product}}&startp={{startp}}&endp={{endp}}">上一頁</a>
+                {% endif %}
+            
+            <span class="current"> <!--頁籤-->
+                頁數:{{productlist.number}} of {{productlist.paginator.num_pages}} <!--num_pages總頁數-->
+            </span>
+
+                {% if productlist.has_next %}
+                    <a href="?page={{productlist.next_page_number}}&product={{product}}&startp={{startp}}&endp={{endp}}">下一頁</a>
+                {% endif %}
+            </span>
+        </div>
+
+    </div>
+    </div>
+    {% include "footer.html" %}
+    </div>
+
+
+
+    </body>
+        
+</html>
+    

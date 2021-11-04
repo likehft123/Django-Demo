@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <link rel="stylesheet" href="/static/css/message.css" />
+        <link rel="stylesheet" href="/static/css/index.css" />
+    <!--js語法 跳出視窗"確定送出嗎?"-->
+    <script>
+        function isSend(){
+            if (confirm("確定送出嗎?")==true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+    </head>
+    
+    
+
+
+    <body>
+
+        {% include "banner.html" %}
+        <div id='wrapper'>
+            <div id="content">
+
+
+                <div id="container">
+                    <form id="form1" onSubmit="return isSend()" action="" method="post">  <!--onSubmit提交時的動作-->
+                        {% csrf_token %}  <!--django裡要post資料必須要有-->
+                        <div class="main">
+                            <div class="msg">
+                                <p>問題諮詢</p>
+                            </div>
+
+                            <div class="title">
+                                <span class="word">主旨</span>
+                                    <div class="field-box">
+                                        <input type="text" name="title" required class="field" /> <!--設定title輸入窗-->
+                                    </div>
+                            </div>
+
+                            <div class="title">
+                                <span class="word">姓名</span>
+                                    <div class="field-box">
+                                        <input type="text" name="username" required class="field" />  <!--required 必填-->
+                                    </div>
+                            </div>
+
+                            <div class="title">
+                                <span class="word">Email</span>
+                                    <div class="field-box">
+                                        <input type="text" name="email" required class="field" />  <!--required 必填-->
+                                    </div>
+                            </div>
+
+                            <div class="title">
+                                <span class="word">內文</span>
+                                    <div class="field-box">
+                                        <textarea name="content" rows="10" required class="field"></textarea>  <!--required 必填-->
+                                    </div>
+                            </div>
+
+                            <div class="send">
+                                <input type="submit" value="送出" />  <!--提交submit-->
+                            </div>
+
+                        </div>
+                    </form>  
+                    </div>         
+        
+
+
+            </div>
+        </div>
+    {% include "footer.html" %} 
+    </body>    
+</html>

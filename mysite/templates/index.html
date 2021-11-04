@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/static/css/index.css">
+    </head>
+    <body>
+        <!--include嵌入其他html-->
+        {% include "banner.html" %}
+        <div id='wrapper'>
+            <div id="content">
+                <!--若有相同的class 可以在想客製化的區塊再新增css-->
+                <div class="info" style="margin-left: 15%;padding-top: 5%;">  <!--database呈現區塊-->
+                    {% for p in productlist %}
+                    <div class="infoarea">
+                        <ul>
+                            <li>商城:{{p.shop}}</li>
+                            <li>產品:{{p.name}}</li>
+                            <li>價格:{{p.price}}</li>
+                            <!--targer="_blank" 開新分頁-->
+                            <li><a href="{{p.link}}" target="_blank"><img src="{{p.photo_url}}"></a></li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% include "footer.html" %}
+        </div>
+    </body>
+</html>
